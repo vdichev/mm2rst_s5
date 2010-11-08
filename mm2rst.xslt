@@ -77,7 +77,16 @@
 			<xsl:with-param name="theString" select="'  '"/>
 			<xsl:with-param name="numberOfTimes" select="count(ancestor::*) - 3"/>
 		</xsl:call-template>
-		<xsl:text>* </xsl:text><xsl:value-of select="@TEXT"/>
+		<xsl:text>* </xsl:text>
+		<xsl:if test="@LINK">
+		    <xsl:text>`</xsl:text>
+		</xsl:if>
+		<xsl:value-of select="@TEXT"/>
+		<xsl:if test="@LINK">
+		    <xsl:text> &lt;</xsl:text>
+			<xsl:value-of select="@LINK"/>
+		    <xsl:text>&gt;`_</xsl:text>
+		</xsl:if>
 		<xsl:apply-templates/>
 	</xsl:template>
 	
